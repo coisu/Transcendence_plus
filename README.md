@@ -1,83 +1,101 @@
-# Transcendence Project Modules
-##### Listed below are all the modules we have completed for ft_transcendence with links to the pages in the subject where they are specified and to relevent files in which the requirements are fulfilled. Major and minor modules are denoted by `Major` and `Minor` respectively.
+# Transcendence: The Mighty Pong Contest
 
-### [Mandatory Part](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=5):
-- [Minimal technical requirements](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=6):
-  - Built **with** backend => [Framework module](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=12) : `Django`
-  - Frontend is pure vanilla Javascript (No libraries apart from `Bootstrap` and `ThreeJS`) => [Frontend module](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=12): `Bootstrap`, [Graphics module](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=24): `ThreeJS`
-  - Website is a `single-page application` => verify this by going to various pages and looking at the network tab in developer the console (use back and forward buttons)
-  - Works with Google Chrome (Check for other browsers)
-  - There should be **NO WARNINGS OR ERRORS** when browsing
-  - Everything should be launched with `docker-compose up --build`
+Welcome to **Transcendence**, a full-stack web application designed for real-time Pong tournaments. This project focuses on implementing key features such as real-time gameplay, user management, advanced graphics, and robust security while adhering to strict project constraints.
 
-- [Game](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=7):
-  - Both players should be able to use **the same keyboard** to play the Pong game ([Remote players module](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=15) will only *"enhance"* this by adding remote players).
-  - We have a **Tournament** => must clearly display who is playing who and the order of players.
-  - **Registration system** is modified by [Standard User Management module]()
-  - **Matchmaking system** must announce the next fight
-  - All players must adhere to the same rules. e.g. Same paddle speed
-  - Game must capture original *essence* of Pong (1972)
-- [Security concerns](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=8)
-  - Passwords in the database must be **hashed** => use strong hashing algorithm!
-  - Protected aginst `SQL injections` + `XSS`
-  - `HTTPS` for everything `ws` => `wss`
-  - All user input should be **validated** in the backend (we can also implement frontend validation before backend validation for better UX)
-  - **.env should not be stored publicly!**
+---
 
-### [Modules](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=9):
-#### Web:
-- `Major` Framework as a backend => `Django` [page 12](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=12)
-- `Minor` Frontend framework => `Bootstrap toolkit` [page 12](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=12)
-- `Minor` Use database for the backend => `PostgreSQL` [page 12](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=12)
-#### User Management:
-- `Major` Standard user management: [page 13](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=12)
-  - Users can **signup**
-  - Registered users can **login**
-  - Users can choose a **username**
-  - Users can **update** their information
-  - Users can **upload** an avatar (default if none provided)
-  - Users can **add friends** and see if they are **online**
-  - User profiles have game stats: wins and losses
-  - Each user has **Match History**: 1v1, dates... etc.
-#### Gameplay and UX:
-- `Major` Remote players [page 15](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=15)
-- `Major` Multiple players [page 15](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=15)
-- `Minor` Game Customization [page 15-16](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=15)
-  - power-ups, attacks, or different maps => enhance gameplay experience
-  - option to choose default game for simpler experience
-  - User friendly menus for game customization
-#### Cybersecurity:
-- `Minor` GDPR Compliance, User Anonymization, Data Managment, and Account Deletion [page 19](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=19)
-  - Allow users to request anonymization
-  - Provide tools to manage data: ability to view, edit and delete personal information
-  - Streamlined process for account deletion
-- `Major` Two-Factor Auth (2FA) + JWT [page 20](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=20)
-  - Require users to provide secondary verification
-  - User-friendly setup process for 2FA enabling. With options for: SMS codes, authenticatior apps and email codes.
-  - Use `JSON Web Tokens` (JWT) for for authentication. User sessions and access to resources should be managed securely
-  - JWT tokens must be issued and validated securely!
-#### Devops:
-- `Major` Backend as Microservices [page 22](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=22)
-  - Loosely-coupled microservices
-  - Define clear boundaries between microservices
-  - Implement microservice communication (REST or message queue)
-  - Ensure that there is proper **seperation of concerns** between services
-#### Graphics:
-- `Major` Advanced 3D => `ThreeJS` [page 24](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=22)
-#### Server-Side Pong:
-- `Major` Server-Side Pong + API [page 27](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=22)
-  - All login is on the server-side: ball movement, scoring, player interactions, etc.
-  - Create API to interact with the game => allow partial usage via CLI
-  - API endpoints: game initialization, player controls, and game state updates.
- 
-## TOTAL: 
-### 8x `Major` + 4x `Minor` 
-### = 7x `Major` (100%) + 1x `Major` (10%) + 4x `Minor` (20%) 
-### = <ins>**130%**</ins>
+## Essential Points
 
+- This project is a **modular implementation** with strict constraints on technology usage and design flexibility.
+- Libraries or tools providing an immediate, complete solution for a global feature or module **are prohibited**.
+- All third-party tools or libraries must be justified during evaluation to ensure compliance with project constraints.
+- It is **mandatory** to meet the specified requirements for each module and justify design decisions during evaluation.
 
-## Potential `?`
-#### Accessibility: `?` [page 25](https://cdn.intra.42.fr/pdf/pdf/118630/en.subject.pdf#page=25)
-- `Minor` Support on all devices `?`
-- `Minor` Expanding Browser Compatibility `?`
+Before coding, carefully plan the architecture of the application, keeping in mind dependencies between modules and imposed constraints. Focus on features rather than reworking uninteresting sub-layers.
+
+---
+
+## Mandatory Requirements
+
+The following requirements must be fulfilled to meet the basic functionality of the project:
+
+1. **Frontend**:
+   - Developed using **pure vanilla JavaScript** (with optional enhancement using the FrontEnd module or Graphics module).
+   - Must be a **single-page application (SPA)** with support for browser back and forward buttons.
+   - No unhandled errors or warnings when navigating the website.
+   - Compatible with the latest stable version of **Google Chrome**.
+
+2. **Backend**:
+   - If included, the backend must be developed in **pure Ruby** unless overridden by the Backend Framework module.
+   - Backend and database integration must comply with the Database module constraints.
+
+3. **Game**:
+   - Implement a **Pong game** where users can play against others in real-time.
+   - Include a **matchmaking system** for tournaments, displaying player order and announcing the next match.
+   - Ensure all players follow the same rules (e.g., identical paddle speed).
+   - Maintain the original **essence of Pong (1972)** while allowing aesthetic variations.
+
+4. **Security**:
+   - Passwords must be hashed with a strong algorithm.
+   - Protect the website from **SQL injections** and **XSS attacks**.
+   - All connections must be secured via **HTTPS (or wss)**.
+   - User input must be validated both on the frontend and backend.
+   - Sensitive information (e.g., credentials, API keys) must be stored securely in a `.env` file and excluded from version control.
+
+5. **Deployment**:
+   - The project must be deployed using **Docker**. Launch with:
+     ```bash
+     docker-compose up --build
+     ```
+
+---
+
+## Modules
+
+The project includes both **Mandatory** and **Optional Modules**, allowing for additional features and improvements. To achieve full project completion, at least **7 Major Modules** (or equivalent) are required.
+
+### Completed Modules
+| **Category**          | **Type** | **Module Name**                                  |
+|-----------------------|----------|--------------------------------------------------|
+| Web                   | Major    | Backend Framework (Django)                      |
+| Web                   | Minor    | Frontend Framework (Bootstrap)                  |
+| Web                   | Minor    | Database Integration (PostgreSQL)               |
+| User Management       | Major    | Standard User Management                        |
+| Gameplay & UX         | Major    | Remote Players                                  |
+| Gameplay & UX         | Major    | Multiple Players                                |
+| Gameplay & UX         | Minor    | Game Customization                              |
+| Cybersecurity         | Major    | Two-Factor Authentication (2FA) + JWT           |
+| Cybersecurity         | Minor    | GDPR Compliance                                 |
+| DevOps                | Major    | Backend as Microservices                        |
+| Graphics              | Major    | Advanced 3D Graphics (ThreeJS)                  |
+| Server-Side Pong      | Major    | Server-Side Logic & API                         |
+
+### Scoring System
+- 8 Major Modules = **110%**
+- 4 Minor Modules = **20%**
+- **Total Completion**: **130%**
+
+---
+
+## Technical Constraints
+
+- **No global feature automation**: Libraries or tools that provide an immediate, complete solution for a feature or module are prohibited.
+- **Single-task tools**: Small libraries solving a simple task are allowed (e.g., hashing passwords).
+- **Evaluation**: Any tool usage not explicitly mentioned in the subject must be justified.
+
+---
+
+## How to Run the Project
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/coisu/Transcendence_plus.git
+   cd transcendence
+   ```
+2. Build and start the application:
+  ```
+     docker-compose up --build
+  ```
+3. Access the application:
+  Navigate to http://localhost:8000
 

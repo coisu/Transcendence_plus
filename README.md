@@ -101,6 +101,9 @@ The project includes both **Mandatory** and **Optional Modules**, allowing for a
 
 
 
+![image](https://github.com/user-attachments/assets/a7a8b2ed-1816-4c9d-8ef9-bf6a5f85fb0f)
+![image](https://github.com/user-attachments/assets/fa1d9c14-62bc-4550-a3c0-a1e66ee0fd94)
+
 
 ![image](https://github.com/user-attachments/assets/e9ede878-bcd8-49e7-bf79-d09707dd0cb4)
 

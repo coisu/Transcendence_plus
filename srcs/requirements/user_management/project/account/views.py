@@ -103,7 +103,7 @@ def get_user(request):
             with open(user.avatar.path, "rb") as image_file:
                 avatar_data = base64.b64encode(image_file.read()).decode('utf-8')
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+        return JsonResponse({'error': str(e)}, status=400)
 
     secret_key = settings.SECRET_KEY
     original_playername = jwt.decode(user.playername, secret_key, algorithms=['HS256'])['playername']
@@ -319,7 +319,10 @@ def verify_one_time_code(request):
             if submitted_code == stored_code:
                 del request.session['one_time_code']
                 if context == 'login':
-                    user = User.objects.get(username=pending_username)
+                    try:
+                        user = get_object_or_404(User, username=pending_username)
+                    except Http404:
+                        return JsonResponse({'error': 'User not found'}, status=404)
                     login(request, user)
                     user.is_online = True
                     print(f"{user.username} is online now {user.is_online}")
@@ -355,7 +358,7 @@ def api_logout_view(request):
     if request.method == 'POST':
         request.user.is_online = False
         request.user.save()
-        print(f"{user.username} is online now {user.is_online}")
+        # print(f"{user.username} is online now {user.is_online}")
         logout(request)
         serializer = get_serializer(request.user)
         redirect_url = "/"
@@ -547,7 +550,7 @@ def delete_account(request):
         return JsonResponse({'success': True, 'message': escape('Account deleted successfully')})
     except Exception as e:
         logger.error(f"Error deleting account: {str(e)}")
-        return JsonResponse({'success': False, 'error': str(e)}, status=500)
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)
 
 # @login_required
 @ensure_csrf_cookie
@@ -575,7 +578,7 @@ def friends_view(request):
         last_valid_time = friend.last_valid_time.timestamp()
         local_tz = pytz.timezone('Europe/Paris')
         print_time = datetime.datetime.fromtimestamp(last_valid_time, tz=pytz.utc).astimezone(local_tz).strftime('%Y-%m-%d %H:%M:%S')
-        print(f"Freinds {frined.username} last_valid_time: ", print_time)
+        print(f"Freinds {friend.username} last_valid_time: ", print_time)
         print("difference: ", (current_time - last_valid_time))
         if friend.is_online == True and (current_time - last_valid_time) > 185:
             friend_info['is_online'] = False
@@ -828,7 +831,7 @@ class ProfileUpdateView(APIView):
             return JsonResponse({'error': str(e)}, status=400)
         except Exception as e:
             print("Save Error:", e)
-            return JsonResponse({'error': 'An error occurred while updating your profile.'}, status=500)
+            return JsonResponse({'error': 'An error occurred while updating your profile.'}, status=400)
 
 
 class PasswordUpdateView(generics.ListCreateAPIView):
@@ -971,19 +974,6 @@ def password_reset_done(request):
     html = render_to_string('password_reset_done.html')
     # return render(request, 'password_reset_done.html')
     return JsonResponse({'html': html})
-
-class UserAPIView(APIView):
-    def get(self, request, *args, **kwargs):
-        # queryset = User.objects.all()
-        # serializer = UserSerializer(queryset, many=True)
-        # return Response(serializer.data, status=status.HTTP_200_OK)
-        try:
-            user = User.objects.get(id=user_id)
-            serializer = UserSerializer(user)
-            escaped_data = escape(serializer.data)
-            return Response(escaped_data, status=status.HTTP_200_OK)
-        except User.DoesNotExist:
-            return Response({"detail": escape("User not found")}, status=status.HTTP_404_NOT_FOUND)
 
 
 def print_all_user_data(request):

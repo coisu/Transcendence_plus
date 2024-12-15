@@ -89,8 +89,8 @@ function getCSRFToken() {
 		if (!response.ok) {
 			throw new Error('Failed to initialize csrf token.');
 		}
-		const csrfToken = response.headers.get('X-CSRFToken');
-		console.log('CSRF Token:', csrfToken);
+		// const csrfToken = response.headers.get('X-CSRFToken');
+		// console.log('CSRF Token:', csrfToken);
 	})
 	.catch(error => {
 		console.error('Error initializing user authentication:', error.message);

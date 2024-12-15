@@ -20,7 +20,7 @@ export default async function logOut() {
 			throw new Error('empty response');
 		}
 
-		if (response.ok) {
+		if (!response.ok) {
 			throw new Error(body.error || body.message || body);
 		}
 

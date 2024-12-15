@@ -206,9 +206,11 @@ export default class Game extends AbstractComponent {
 	}
 
 	onWindowResize() {
-		this.camera.aspect = this.screenWidth / this.screenHeight;
-		this.camera.updateProjectionMatrix();
-		this.renderer.setSize(this.screenWidth, this.screenHeight);
+		if (this.camera && this.renderer) {
+			this.camera.aspect = this.screenWidth / this.screenHeight;
+			this.camera.updateProjectionMatrix();
+			this.renderer.setSize(this.screenWidth, this.screenHeight);
+		}
 	};
 
 	handleKeyPress(event) {
@@ -508,7 +510,7 @@ export default class Game extends AbstractComponent {
 		this.displayTimer(data);
 
 		// // console.log("Updating Scene...");
-		if (data.ball.model) {
+		if (this.ballModel) {
 			this.ballModel.position.set(data.ball.pos.x, data.ball.pos.y, 0);
 			this.ballModel.rotateX((-Math.PI / 20) * data.ball.sp);
 			this.ballModel.rotateZ((Math.PI / 24) * data.ball.sp);

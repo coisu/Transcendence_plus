@@ -205,7 +205,7 @@ export default class ProfilePage extends AbstractComponent {
 		let matchHistory = gameStats.played_tournaments;
 		// console.log("Match History:", matchHistory);
 		elemsToBeFilled.matchRows.innerHTML = "";
-		matchHistory.forEach(match => {
+		matchHistory?.forEach(match => {
 			// // console.log("Match:", match);
 			let matchRow = document.createElement("div");
 			matchRow.classList.add("match-row");

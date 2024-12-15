@@ -99,3 +99,8 @@ The project includes both **Mandatory** and **Optional Modules**, allowing for a
 3. Access the application:
   Navigate to http://localhost:8000
 
+
+
+
+![image](https://github.com/user-attachments/assets/e9ede878-bcd8-49e7-bf79-d09707dd0cb4)
+

@@ -85,19 +85,6 @@ The project includes both **Mandatory** and **Optional Modules**, allowing for a
 
 ---
 
-## How to Run the Project
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/coisu/Transcendence_plus.git
-   cd transcendence
-   ```
-2. Build and start the application:
-  ```
-     docker-compose up --build
-  ```
-3. Access the application:
-  Navigate to http://localhost:8000
 
 
 
